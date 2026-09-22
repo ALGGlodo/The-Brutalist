@@ -139,3 +139,47 @@ nav li a{
     font-family: 'Archivo Black', sans-serif;
     font-size: 2em;
 }
+
+/* Gallery Section Styles */
+.archive{
+    padding: 2rem;
+}
+
+
+.gallery{
+    display: grid;
+    grid-template-columns: 0.85fr 0.85fr; /* narrower columns */
+    justify-content: center;
+    column-gap: 4rem;
+    row-gap: 3rem;  
+    padding-left: 2rem;
+}
+
+.img-box:nth-child(even){
+    margin-top: 6rem; /* pushes right-column images down, creating stagger */
+}
+
+.img-box{
+    width: 85%;
+}
+
+.img-box img{
+    width: 100%;
+    display: block;
+}
+
+.title{
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.archive-contents h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 3em;
+    margin-bottom: 1rem;
+}

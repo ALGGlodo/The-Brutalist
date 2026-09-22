@@ -14,6 +14,18 @@
     --font-family-mono: 'IBM Plex Mono', monospace;
 }
 
+html{
+    overflow-x: hidden;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+img{
+    max-width: 100%;
+}
+
 header{
     display: flex;
     align-items: center;
@@ -28,6 +40,41 @@ header{
     font-size: 1.5em;
 }
 
+/* Hamburger button — hidden on desktop, shown via media query below */
+.nav-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.nav-toggle span{
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Turns into an X when nav is open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1){
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2){
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3){
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
 nav{
     display: flex;
     justify-content: center;
@@ -39,6 +86,7 @@ nav ul{
     align-items: center;
     list-style: none;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 nav li a{
@@ -50,7 +98,7 @@ nav li a{
 /* Hero Section Styles */
 
 .hero-section{
-        height: 100vh;
+        min-height: 100vh;
         background-color: #f5f5f5;
         display: flex;
         justify-content: center;
@@ -72,14 +120,14 @@ nav li a{
 
 .hero-header{
     font-family: 'Archivo Black', sans-serif;
-    font-size: 4em;
+    font-size: clamp(2.2em, 7vw, 4em);
     margin-bottom: 1rem;
     align-self: left;
 }
 
 .hero-description{
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.2em;
+    font-size: clamp(1em, 2vw, 1.2em);
     margin-bottom: 2rem;
     max-width: 500px;
     line-height: 1.5;
@@ -92,13 +140,15 @@ nav li a{
     color: var(--primary-color);
     border: none;
     background-color: var(--accent-color);
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
 }
 
 /* History Section Styles */
 .history{
     padding: 2rem;
     background-color: var(--secondary-accent-color);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -107,6 +157,8 @@ nav li a{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
     margin-top: auto;
 }
 
@@ -118,6 +170,7 @@ nav li a{
     background-color: var(--secondary-color);
     padding: 2rem;
     width: fit-content;
+    max-width: 100%;
 }
 
 .upper-text{
@@ -128,7 +181,7 @@ nav li a{
 .below-text{
     margin-top: 3rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 3em;
+    font-size: clamp(1.6em, 5vw, 3em);
 }
 
 .header-right{
@@ -138,7 +191,7 @@ nav li a{
     justify-content: center;
     gap: 1rem;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 2em;
+    font-size: clamp(1.2em, 3vw, 2em);
 }
 
 /* Gallery Section Styles */
@@ -152,7 +205,7 @@ nav li a{
     grid-template-columns: 0.85fr 0.85fr; /* narrower columns */
     justify-content: center;
     column-gap: 4rem;
-    row-gap: 3rem;  
+    row-gap: 3rem;
     padding-left: 2rem;
 }
 
@@ -181,8 +234,9 @@ nav li a{
     justify-content: center;
     align-items: center;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 3em;
+    font-size: clamp(2em, 6vw, 3em);
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 /* Design Principles Section Styles */
@@ -197,7 +251,7 @@ nav li a{
     justify-content: flex-start;
     align-items: center;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 3em;
+    font-size: clamp(2em, 6vw, 3em);
     margin-bottom: 1rem;
 }
 
@@ -247,7 +301,7 @@ nav li a{
     justify-content: flex-start;
     align-items: center;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 3em;
+    font-size: clamp(2em, 6vw, 3em);
     margin-bottom: 1rem;
 }
 
@@ -313,7 +367,7 @@ nav li a{
     justify-content: flex-start;
     align-items: center;
     font-family: 'Archivo Black', sans-serif;
-    font-size: 3em;
+    font-size: clamp(2em, 6vw, 3em);
     margin-bottom: 1rem;
 }
 
@@ -326,4 +380,266 @@ nav li a{
     font-size: 1em;
     cursor: pointer;
     box-shadow: 4px 4px 0 #403f3f;
+}
+
+/* Footer Section Styles */
+footer{
+    padding: 2rem;
+    background-color: var(--primary-color);
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent-color)
+}
+
+.footer-contents{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-headers{
+    max-width: 600px;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+.footer-main{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.7em;
+    margin-bottom: 1rem;
+}
+
+.footer-desc{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1em;
+    color: var(--accent-color);
+}
+
+.footer-sub{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2em;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-nav{
+    position: relative;
+    left: -2rem; /* adjust to taste */
+}
+
+.footer-nav p{
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-nav li a{
+    text-decoration: none;
+    color: var(--accent-color);
+    font-family: var(--font-family-mono);
+    font-size: 1em;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   Tablet: <= 900px | Mobile: <= 600px
+   ========================================================================== */
+
+/* ---------- TABLET (<= 900px) ---------- */
+@media (max-width: 900px){
+
+    header{
+        position: relative;
+    }
+
+    .nav-toggle{
+        display: flex;
+    }
+
+    nav{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid black;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+        z-index: 1000;
+    }
+
+    nav.open{
+        max-height: 300px; /* enough to reveal the full list */
+    }
+
+    nav ul{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0.5rem 1rem 1rem;
+    }
+
+    nav li{
+        width: 100%;
+    }
+
+    nav li a{
+        display: block;
+        padding: 0.75rem 0;
+    }
+
+    .hero-section,
+    .history{
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .content-row{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2.5rem;
+    }
+
+    .header-right{
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .gallery{
+        grid-template-columns: 1fr;
+        padding-left: 0;
+        row-gap: 3.5rem;
+    }
+
+    .img-box:nth-child(even){
+        margin-top: 0; /* stagger only makes sense in 2 columns */
+    }
+
+    .img-box{
+        width: 100%;
+    }
+
+    .principles,
+    .architects-grid,
+    .legacy-container{
+        grid-template-columns: 1fr;
+    }
+
+    .principle-box,
+    .architect-box{
+        box-shadow: 6px 6px 0 #1a1a1a;
+    }
+
+    .footer-contents{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-nav{
+        left: 0; /* no room to spare on smaller screens */
+    }
+}
+
+/* ---------- MOBILE (<= 600px) ---------- */
+@media (max-width: 600px){
+
+    header{
+        padding: 1rem 0.75rem;
+    }
+
+    .logo{
+        font-size: 1.2em;
+    }
+
+    nav ul{
+        gap: 0.6rem;
+        font-size: 0.85em;
+    }
+
+    .hero-section,
+    .history,
+    .archive,
+    .design-principles,
+    .architects,
+    .legacy,
+    footer{
+        padding: 1.5rem 1rem;
+    }
+
+    .hero-description{
+        max-width: 100%;
+    }
+
+    .hero-cta button{
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .brutalist-container{
+        padding: 1.25rem;
+        width: 100%;
+    }
+
+    .upper-text{
+        max-width: 100%;
+    }
+
+    .below-text{
+        margin-top: 2rem;
+    }
+
+    .principle-box,
+    .architect-box{
+        padding: 1.25rem;
+        box-shadow: 5px 5px 0 #1a1a1a;
+    }
+
+    .legacy-content{
+        font-size: 1em;
+    }
+
+    .legacy-content button{
+        width: 100%;
+        padding: 0.75rem 1rem;
+    }
+
+    .footer-nav ul{
+        gap: 0.4rem;
+    }
+
+    /* Safety net: re-assert single-column layouts and word wrapping
+       in case anything above got missed/duplicated during editing */
+    .principles,
+    .architects-grid,
+    .legacy-container,
+    .gallery{
+        grid-template-columns: 1fr !important;
+    }
+
+    .principle-box,
+    .architect-box,
+    .legacy-content,
+    .footer-nav,
+    .footer-headers{
+        max-width: 100% !important;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .footer-nav{
+        left: 0 !important;
+    }
+
+    .brutalist-container{
+        max-width: 100% !important;
+    }
 }

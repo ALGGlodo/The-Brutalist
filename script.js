@@ -11,3 +11,18 @@ gsap.from(".img-box", {
     ease: "power4.out", // sharp, blunt deceleration — fits brutalist feel
     stagger: 0.15, // each box animates 0.15s after the previous
 });
+
+const navToggle = document.querySelector(".nav-toggle");
+const nav = document.querySelector("header nav");
+
+navToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", isOpen);
+});
+
+nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", false);
+    });
+});
